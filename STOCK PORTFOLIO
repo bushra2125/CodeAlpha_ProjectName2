@@ -1,0 +1,32 @@
+# Predefined stock prices
+stock_prices = {
+    "AAPL": 188,
+    "TSLA": 250,
+    "AMZN": 130,
+    "GOOGL": 140,
+    "MSFT": 330
+}
+
+portfolio = {}
+total_investment = 0
+
+print("Enter stock names and quantities (type 'done' to finish):")
+
+while True:
+    stock = input("Stock Symbol (e.g., AAPL): ").upper()
+    if stock == "DONE":
+        break
+    if stock not in stock_prices:
+        print("Stock not found in database. Try again.")
+        continue
+    quantity = int(input(f"Quantity of {stock}: "))
+    investment = quantity * stock_prices[stock]
+    portfolio[stock] = (quantity, investment)
+    total_investment += investment
+
+# Display summary
+print("\n📊 Portfolio Summary:")
+for stock, (qty, value) in portfolio.items():
+    print(f"{stock}: {qty} shares × ${stock_prices[stock]} = ${value}")
+
+print(f"\n💰 Total Investment: ${total_investment}")
